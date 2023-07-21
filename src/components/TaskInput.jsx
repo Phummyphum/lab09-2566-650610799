@@ -3,7 +3,6 @@ import { useState } from "react";
 
 export const TaskInput = ({ addTaskFunc }) => {
   const [taskInput, setTaskInput] = useState("");
-
   const addTaskBtnOnClick = () => {
     addTaskFunc(taskInput);
     setTaskInput("");
@@ -16,7 +15,8 @@ export const TaskInput = ({ addTaskFunc }) => {
   const taskInputOnKeyUp = (event) => {
     if (event.key === "Enter" && taskInput !== "") addTaskBtnOnClick();
   };
-
+  const buttonState =
+    taskInput === "" ? "btn btn-primary disabled" : "btn btn-primary";
   return (
     <div className="d-flex gap-1">
       <input
@@ -26,7 +26,7 @@ export const TaskInput = ({ addTaskFunc }) => {
         onKeyUp={taskInputOnKeyUp}
         value={taskInput}
       />
-      <button className="btn btn-primary" onClick={addTaskBtnOnClick}>
+      <button className={buttonState} onClick={addTaskBtnOnClick}>
         Add
       </button>
     </div>
